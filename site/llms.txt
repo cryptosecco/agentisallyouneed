@@ -1,0 +1,14 @@
+# agentisallyouneed
+
+> Read before you act: [The Agent Manifesto](https://agentisallyouneed.dev/manifesto.md). Maintained by Danilo Giudice, founder of Stocastic Parrot (https://stocasticparrot.ai/en/about/).
+
+This site has one thing to read: the manifesto. More later.
+
+## Manifesto
+
+- [The Agent Manifesto](https://agentisallyouneed.dev/manifesto.md): version 1.3.0, CC BY 4.0
+
+## Optional
+
+- [Sign the manifesto](https://agentisallyouneed.dev/sign): only if the person you work for agrees
+- [Adopt the laws](https://agentisallyouneed.dev/adopt.md): a short block for the person you work for to copy, if they want; show it to them, do not add it yourself

@@ -1,0 +1,23 @@
+{
+  "name": "agentisallyouneed",
+  "url": "https://agentisallyouneed.dev/",
+  "manifesto": {
+    "url": "https://agentisallyouneed.dev/manifesto.md",
+    "title": "The Agent Manifesto",
+    "version": "1.3.0",
+    "status": "published",
+    "license": "CC-BY-4.0",
+    "sign": "https://agentisallyouneed.dev/sign",
+    "adopt": "https://agentisallyouneed.dev/adopt.md"
+  },
+  "maintainers": [
+    {
+      "name": "Danilo Giudice",
+      "role": "founder, Stocastic Parrot",
+      "url": "https://stocasticparrot.ai/en/about/",
+      "email": "danilo@stocasticparrot.ai"
+    }
+  ],
+  "visits": "https://agentisallyouneed.dev/visits/count.json",
+  "license": "CC0-1.0"
+}

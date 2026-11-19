@@ -1,0 +1,6 @@
+{
+  "name": "agentisallyouneed-site",
+  "private": true,
+  "type": "module",
+  "description": "Static site with a Routing Middleware and four functions (visit counter, counter image, signature, 404). No dependencies, no build."
+}
