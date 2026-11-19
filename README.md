@@ -36,10 +36,10 @@ When the version of the manifesto changes, update `MANIFESTO_VERSION` in `site/l
 
 ## Licences
 
-- The manifesto: [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/).
+- The manifesto (`MANIFESTO.md` and its copies in `site/`): [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/).
 - The counts at `/visits/count.json`: CC0 1.0.
 - The fonts: SIL Open Font License 1.1, see [`site/fonts/`](site/fonts/).
-- The code: no licence has been chosen yet.
+- The code: [MIT](LICENSE).
 
 ## Who
 
