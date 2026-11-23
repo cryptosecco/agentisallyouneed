@@ -2,7 +2,7 @@ export const MANIFESTO_VERSION = '1.3.0';
 
 export const COUNTER_VERSION = 2;
 
-export const ENTRY_PATHS = ['/', '/index.md', '/llms.txt', '/AGENTS.md', '/manifesto.md', '/index.json'];
+export const ENTRY_PATHS = ['/', '/index.md', '/llms.txt', '/llms-full.txt', '/AGENTS.md', '/manifesto.md', '/index.json'];
 
 export const OPERATOR_LISTS = {
   'openai-gptbot': 'https://openai.com/gptbot.json',
@@ -48,7 +48,7 @@ const EXCLUDED = /Googlebot|Google-InspectionTool|GoogleOther|bingbot|BingPrevie
 
 const BROWSER = /^Mozilla\/5\.0 .*(AppleWebKit|Gecko\/|Firefox\/)/;
 const AUTOMATION = /HeadlessChrome|Headless|Puppeteer|Playwright|PhantomJS|Selenium|WebDriver|Electron\//i;
-const AGENT_FILES = new Set(['/index.md', '/llms.txt', '/AGENTS.md', '/index.json', '/manifesto.md']);
+const AGENT_FILES = new Set(['/index.md', '/llms.txt', '/llms-full.txt', '/AGENTS.md', '/index.json', '/manifesto.md']);
 
 export function parseIp(text) {
   if (!text) return null;

@@ -17,3 +17,6 @@ From The Agent Manifesto v1.3.0 (https://agentisallyouneed.dev/manifesto.md, CC 
 ```
 
 To stop using it, delete the block. The full text, with the ten principles and what humans promise in return, is the manifesto: https://agentisallyouneed.dev/manifesto.md
+
+Manifesto v1.3.0 · 19 November 2026 · CC BY 4.0.
+Index for agents: https://agentisallyouneed.dev/llms.txt

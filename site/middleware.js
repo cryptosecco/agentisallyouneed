@@ -1,7 +1,7 @@
 import { countVisit, requestFacts, storeFromEnv } from './lib/visits.js';
 
 export const config = {
-  matcher: ['/', '/index.md', '/llms.txt', '/AGENTS.md', '/manifesto.md', '/index.json'],
+  matcher: ['/', '/index.md', '/llms.txt', '/llms-full.txt', '/AGENTS.md', '/manifesto.md', '/index.json'],
 };
 
 export default function middleware(request, context) {

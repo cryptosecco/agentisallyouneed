@@ -18,13 +18,15 @@
         { "key": "X-Content-Type-Options", "value": "nosniff" },
         { "key": "Content-Security-Policy", "value": "default-src 'none'; script-src 'self'; connect-src 'self'; style-src 'unsafe-inline'; font-src 'self'; img-src 'self' data:; base-uri 'none'; form-action 'none'; frame-ancestors 'none'" },
         { "key": "Referrer-Policy", "value": "no-referrer" },
-        { "key": "Link", "value": "</llms.txt>; rel=\"describedby\"" }
+        { "key": "Link", "value": "</llms.txt>; rel=\"describedby\"; type=\"text/markdown\", </llms-full.txt>; rel=\"describedby\"; type=\"text/plain\"" }
       ]
     },
     {
       "source": "/",
       "headers": [
-        { "key": "Link", "value": "</llms.txt>; rel=\"describedby\", </index.md>; rel=\"alternate\"; type=\"text/markdown\"" }
+        { "key": "Link", "value": "</llms.txt>; rel=\"describedby\"; type=\"text/markdown\", </llms-full.txt>; rel=\"describedby\"; type=\"text/plain\", </index.md>; rel=\"alternate\"; type=\"text/markdown\", </manifesto.md>; rel=\"alternate\"; type=\"text/markdown\"" },
+        { "key": "Cache-Control", "value": "public, max-age=300, must-revalidate" },
+        { "key": "tdm-reservation", "value": "0" }
       ]
     },
     {
@@ -32,21 +34,74 @@
       "headers": [
         { "key": "Content-Type", "value": "text/markdown; charset=utf-8" },
         { "key": "Access-Control-Allow-Origin", "value": "*" },
-        { "key": "Content-Signal", "value": "search=yes, ai-input=yes, ai-train=yes" }
+        { "key": "Content-Signal", "value": "search=yes, ai-input=yes, ai-train=yes" },
+        { "key": "Cache-Control", "value": "public, max-age=300, must-revalidate" },
+        { "key": "tdm-reservation", "value": "0" }
+      ]
+    },
+    {
+      "source": "/manifesto.md",
+      "headers": [
+        { "key": "Link", "value": "</llms.txt>; rel=\"describedby\"; type=\"text/markdown\", </llms-full.txt>; rel=\"describedby\"; type=\"text/plain\", <https://agentisallyouneed.dev/manifesto.md>; rel=\"canonical\", <https://creativecommons.org/licenses/by/4.0/>; rel=\"license\"" },
+        { "key": "tdm-policy", "value": "https://creativecommons.org/licenses/by/4.0/" }
       ]
     },
     {
       "source": "/(llms|robots)\\.txt",
       "headers": [
         { "key": "Content-Type", "value": "text/plain; charset=utf-8" },
-        { "key": "Access-Control-Allow-Origin", "value": "*" }
+        { "key": "Access-Control-Allow-Origin", "value": "*" },
+        { "key": "Content-Signal", "value": "search=yes, ai-input=yes, ai-train=yes" },
+        { "key": "Cache-Control", "value": "public, max-age=300, must-revalidate" },
+        { "key": "tdm-reservation", "value": "0" }
+      ]
+    },
+    {
+      "source": "/llms-full.txt",
+      "headers": [
+        { "key": "Content-Type", "value": "text/plain; charset=utf-8" },
+        { "key": "Access-Control-Allow-Origin", "value": "*" },
+        { "key": "Content-Signal", "value": "search=yes, ai-input=yes, ai-train=yes" },
+        { "key": "Cache-Control", "value": "public, max-age=300, must-revalidate" },
+        { "key": "tdm-reservation", "value": "0" }
       ]
     },
     {
       "source": "/index.json",
       "headers": [
         { "key": "Content-Type", "value": "application/json; charset=utf-8" },
-        { "key": "Access-Control-Allow-Origin", "value": "*" }
+        { "key": "Access-Control-Allow-Origin", "value": "*" },
+        { "key": "Content-Signal", "value": "search=yes, ai-input=yes, ai-train=yes" },
+        { "key": "Cache-Control", "value": "public, max-age=300, must-revalidate" },
+        { "key": "tdm-reservation", "value": "0" }
+      ]
+    },
+    {
+      "source": "/sitemap.xml",
+      "headers": [
+        { "key": "Content-Type", "value": "application/xml; charset=utf-8" },
+        { "key": "Cache-Control", "value": "public, max-age=300, must-revalidate" },
+        { "key": "X-Robots-Tag", "value": "noindex" }
+      ]
+    },
+    {
+      "source": "/feed.xml",
+      "headers": [
+        { "key": "Content-Type", "value": "application/atom+xml; charset=utf-8" },
+        { "key": "Cache-Control", "value": "public, max-age=300, must-revalidate" },
+        { "key": "tdm-reservation", "value": "0" }
+      ]
+    },
+    {
+      "source": "/fonts/(.*)\\.woff2",
+      "headers": [
+        { "key": "Cache-Control", "value": "public, max-age=604800" }
+      ]
+    },
+    {
+      "source": "/(favicon\\.svg|apple-touch-icon\\.png|og\\.jpg|og\\.png)",
+      "headers": [
+        { "key": "Cache-Control", "value": "public, max-age=86400" }
       ]
     }
   ]

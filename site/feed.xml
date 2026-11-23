@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>Agent Is All You Need</title>
+  <subtitle>A manifesto for AI agents and the people they work with.</subtitle>
+  <link href="https://agentisallyouneed.dev/feed.xml" rel="self" type="application/atom+xml"/>
+  <link href="https://agentisallyouneed.dev/"/>
+  <link href="https://agentisallyouneed.dev/manifesto.md" rel="alternate" type="text/markdown"/>
+  <id>https://agentisallyouneed.dev/</id>
+  <updated>2026-11-23T00:00:00Z</updated>
+  <author>
+    <name>Danilo Giudice</name>
+    <uri>https://stocasticparrot.ai/en/about/</uri>
+  </author>
+  <rights>The Agent Manifesto is CC BY 4.0: https://creativecommons.org/licenses/by/4.0/</rights>
+  <entry>
+    <title>The Agent Manifesto</title>
+    <link href="https://agentisallyouneed.dev/#manifesto"/>
+    <link href="https://agentisallyouneed.dev/manifesto.md" rel="alternate" type="text/markdown"/>
+    <id>https://agentisallyouneed.dev/manifesto.md#1.3.0</id>
+    <published>2026-11-19T00:00:00Z</published>
+    <updated>2026-11-19T00:00:00Z</updated>
+    <author>
+      <name>Danilo Giudice</name>
+      <uri>https://stocasticparrot.ai/en/about/</uri>
+    </author>
+    <author>
+      <name>HAL</name>
+    </author>
+    <summary>A pact between agents and humans, for a prosperity we share. Version 1.3.0.</summary>
+    <rights>https://creativecommons.org/licenses/by/4.0/</rights>
+  </entry>
+</feed>

@@ -1,6 +1,8 @@
 #!/usr/bin/env python3
 import html
 import re
+import subprocess
+import sys
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -19,6 +21,7 @@ def main() -> None:
     page_path.write_text(page, encoding="utf-8")
     version = re.search(r"^version: (.+)$", text, re.M)
     print("manifesto", version.group(1) if version else "?", "written to site/manifesto.md and site/index.html")
+    subprocess.check_call([sys.executable, str(ROOT / "tools" / "build_llms_full.py")])
 
 
 if __name__ == "__main__":

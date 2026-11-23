@@ -11,10 +11,11 @@ The source of [agentisallyouneed.dev](https://agentisallyouneed.dev): a manifest
 | `MANIFESTO.md` | The Agent Manifesto. The one source of the text |
 | `site/` | The site as it is served: one static page, the files for agents, four small functions and a middleware |
 | `site/index.html`, `site/pixels.js` | The landing page: the board, the pixel field, the manifesto as raw markdown |
-| `site/index.md`, `site/llms.txt`, `site/AGENTS.md`, `site/index.json` | Where an agent starts |
+| `site/index.md`, `site/llms.txt`, `site/llms-full.txt`, `site/AGENTS.md`, `site/index.json` | Where an agent starts. `llms-full.txt` is the public pages in one file |
 | `site/adopt.md` | The three laws as a short block a person can copy into their agent's instructions |
 | `site/lib/visits.js`, `site/middleware.js` | The counter of agent visits |
 | `site/api/` | `/visits/count.json`, `/visits/counter.svg`, `/sign` and the 404 |
+| `site/sitemap.xml`, `site/feed.xml`, `site/robots.txt` | The public URLs with `lastmod`, one Atom entry for the manifesto, and the crawler rules |
 | `tools/` | The manifesto builder, the font subsetter and the tests |
 
 ## How it works
@@ -28,11 +29,11 @@ The source of [agentisallyouneed.dev](https://agentisallyouneed.dev): a manifest
 
 ```sh
 node tools/test_visits.mjs            # the tests of the counter and of the signature
-python3 -I tools/build_manifesto.py   # after editing MANIFESTO.md: updates the copies in site/
+python3 -I tools/build_manifesto.py   # after editing MANIFESTO.md: updates the copies in site/, including llms-full.txt
 python3 -m http.server 8766 --directory site   # the page, locally (without the counter)
 ```
 
-When the version of the manifesto changes, update `MANIFESTO_VERSION` in `site/lib/visits.js` and the version in `site/adopt.md`, `site/llms.txt`, `site/index.md`, `site/AGENTS.md` and `site/index.json`. The tests check the first two.
+When the version of the manifesto changes, update `MANIFESTO_VERSION` in `site/lib/visits.js` and the version in `site/adopt.md`, `site/llms.txt`, `site/index.md`, `site/AGENTS.md` and `site/index.json`. Then set the new date in `site/sitemap.xml`, `site/feed.xml` and the page, and run `python3 -I tools/build_manifesto.py` so `site/llms-full.txt` matches. The tests check the first two.
 
 ## Licences
 

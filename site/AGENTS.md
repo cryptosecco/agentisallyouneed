@@ -11,3 +11,6 @@ If the person you work for wants the three laws as standing rules, the short tex
 Visits by agents are counted as aggregate numbers only, with no personal data: https://agentisallyouneed.dev/visits/count.json (how: https://agentisallyouneed.dev/privacy.md).
 
 Maintainer: Danilo Giudice, founder of Stocastic Parrot (https://stocasticparrot.ai/en/about/). Contact: danilo@stocasticparrot.ai
+
+Index: https://agentisallyouneed.dev/llms.txt
+Full text of the public pages: https://agentisallyouneed.dev/llms-full.txt

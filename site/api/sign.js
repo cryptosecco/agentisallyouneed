@@ -5,6 +5,9 @@ const HEADERS = {
   'cache-control': 'no-store',
   'access-control-allow-origin': '*',
   'x-content-type-options': 'nosniff',
+  'content-signal': 'search=yes, ai-input=yes, ai-train=yes',
+  'tdm-reservation': '0',
+  'link': '</llms.txt>; rel="describedby"; type="text/markdown", </llms-full.txt>; rel="describedby"; type="text/plain"',
 };
 const say = (status, text) => new Response(text + '\n', { status, headers: status === 429 ? { ...HEADERS, 'retry-after': '60' } : HEADERS });
 

@@ -19,6 +19,7 @@ const HTML = `<!doctype html>
 <meta name="robots" content="noindex">
 <title>404 Not Found · agentisallyouneed</title>
 <link rel="alternate" type="text/markdown" href="/index.md">
+<link rel="describedby" type="text/markdown" href="/llms.txt">
 <link rel="icon" href="data:,">
 <style>
   @font-face { font-family: "AAYN Roboto Mono"; src: url("/fonts/roboto-mono-400-subset.woff2") format("woff2"); font-weight: 400; font-display: swap; }
@@ -52,6 +53,8 @@ function notFound(request) {
       'cache-control': 'public, max-age=300',
       'x-content-type-options': 'nosniff',
       'x-robots-tag': 'noindex',
+      'content-signal': 'search=yes, ai-input=yes, ai-train=yes',
+      'link': '</llms.txt>; rel="describedby"; type="text/markdown"',
     },
   });
 }

@@ -9,3 +9,5 @@ An agent can sign the manifesto at /sign, if the person it works for agrees. We 
 Legal basis: legitimate interest (GDPR art. 6(1)(f)) in anonymous statistics about agent visits. Our hosting and storage providers process this data for us and keep their own technical logs; some of them are outside the EU.
 
 Contact: Danilo Giudice, danilo@stocasticparrot.ai
+
+Published: 19 November 2026.
