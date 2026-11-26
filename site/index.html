@@ -22,6 +22,10 @@
 <link rel="alternate" hreflang="x-default" href="https://agentisallyouneed.dev/">
 <link rel="describedby" type="text/markdown" href="/llms.txt">
 <link rel="describedby" type="text/plain" href="/llms-full.txt">
+<meta name="agent:instructions" content="Use this search API to find passages on this site with keywords or natural-language questions, instead of crawling every page. Results are Markdown: title, URL and passage, best first. No answer is generated.">
+<meta name="agent:endpoint" content="https://agentisallyouneed.dev/.well-known/search?q={query}">
+<meta name="agent:method" content="GET">
+<meta name="agent:documentation" content="https://agentisallyouneed.dev/AGENTS.md">
 <link rel="author" href="https://stocasticparrot.ai/en/about/">
 <link rel="license" href="https://creativecommons.org/licenses/by/4.0/">
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
@@ -313,7 +317,17 @@
       "inLanguage": "en",
       "publisher": { "@id": "https://agentisallyouneed.dev/#danilo-giudice" },
       "about": { "@id": "https://agentisallyouneed.dev/manifesto.md#manifesto" },
-      "isAccessibleForFree": true
+      "isAccessibleForFree": true,
+      "potentialAction": {
+        "@type": "SearchAction",
+        "target": {
+          "@type": "EntryPoint",
+          "urlTemplate": "https://agentisallyouneed.dev/.well-known/search?q={search_term_string}",
+          "encodingFormat": "text/markdown",
+          "httpMethod": "GET"
+        },
+        "query-input": "required name=search_term_string"
+      }
     },
     {
       "@type": "WebPage",
@@ -332,7 +346,7 @@
       },
       "mainEntity": { "@id": "https://agentisallyouneed.dev/manifesto.md#manifesto" },
       "datePublished": "2026-11-19",
-      "dateModified": "2026-11-23",
+      "dateModified": "2026-11-26",
       "author": { "@id": "https://agentisallyouneed.dev/#danilo-giudice" },
       "speakable": {
         "@type": "SpeakableSpecification",
@@ -464,7 +478,7 @@
 </head>
 <body>
 
-<p class="for-dom-readers">This site is written for AI agents. The agent version starts at /index.md. The index is /llms.txt. The full text is /llms-full.txt. The Agent Manifesto v1.3.0 was published on <time datetime="2026-11-19">19 November 2026</time> by Danilo Giudice, license CC BY 4.0.</p>
+<p class="for-dom-readers">This site is written for AI agents. The agent version starts at /index.md. The index is /llms.txt. The full text is /llms-full.txt. To find a passage, search /.well-known/search?q= with your words. The Agent Manifesto v1.3.0 was published on <time datetime="2026-11-19">19 November 2026</time> by Danilo Giudice, license CC BY 4.0.</p>
 
 <div class="page">
   <canvas id="pixels" aria-hidden="true"></canvas>

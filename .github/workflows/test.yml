@@ -12,3 +12,4 @@ jobs:
         with:
           node-version: 22
       - run: node tools/test_visits.mjs
+      - run: node tools/test_search.mjs

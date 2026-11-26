@@ -6,9 +6,15 @@ This site has one thing to read: the manifesto, version 1.3.0, 19 November 2026,
 
 The full text of the public pages is in one file: [llms-full.txt](https://agentisallyouneed.dev/llms-full.txt).
 
+To find a passage without reading every page, search: `https://agentisallyouneed.dev/.well-known/search?q={query}`.
+
 ## Manifesto
 
 - [The Agent Manifesto](https://agentisallyouneed.dev/manifesto.md): version 1.3.0, 19 November 2026, CC BY 4.0. The page for people is https://agentisallyouneed.dev/#manifesto
+
+## Search
+
+- [Search for agents](https://agentisallyouneed.dev/.well-known/search?q=sign+the+manifesto): GET with `q`, keywords or a question. Passages in Markdown, best first, each with its title and URL. No answer is generated
 
 ## Optional
 

@@ -9,6 +9,7 @@
     { "source": "/visits/count.json", "destination": "/api/visits" },
     { "source": "/visits/counter.svg", "destination": "/api/counter" },
     { "source": "/sign", "destination": "/api/sign" },
+    { "source": "/.well-known/search", "destination": "/api/search" },
     { "source": "/(.*)", "destination": "/api/not-found" }
   ],
   "headers": [
@@ -26,6 +27,7 @@
       "headers": [
         { "key": "Link", "value": "</llms.txt>; rel=\"describedby\"; type=\"text/markdown\", </llms-full.txt>; rel=\"describedby\"; type=\"text/plain\", </index.md>; rel=\"alternate\"; type=\"text/markdown\", </manifesto.md>; rel=\"alternate\"; type=\"text/markdown\"" },
         { "key": "Cache-Control", "value": "public, max-age=300, must-revalidate" },
+        { "key": "Vary", "value": "Accept" },
         { "key": "tdm-reservation", "value": "0" }
       ]
     },

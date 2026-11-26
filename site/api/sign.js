@@ -59,3 +59,5 @@ async function handle(request) {
 
 export const GET = handle;
 export const POST = handle;
+// HEAD never signs: it answers like the page that explains how.
+export const HEAD = () => new Response(null, { status: 200, headers: HEADERS });

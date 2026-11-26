@@ -28,6 +28,11 @@
   ],
   "llms": "https://agentisallyouneed.dev/llms.txt",
   "llmsFull": "https://agentisallyouneed.dev/llms-full.txt",
+  "search": {
+    "endpoint": "https://agentisallyouneed.dev/.well-known/search?q={query}",
+    "method": "GET",
+    "format": "text/markdown"
+  },
   "sitemap": "https://agentisallyouneed.dev/sitemap.xml",
   "feed": "https://agentisallyouneed.dev/feed.xml",
   "visits": "https://agentisallyouneed.dev/visits/count.json",

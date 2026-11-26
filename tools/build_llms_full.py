@@ -1,4 +1,5 @@
 #!/usr/bin/env python3
+import json
 import re
 from pathlib import Path
 
@@ -50,6 +51,18 @@ def main():
         raise SystemExit("llms-full.txt does not contain the manifesto")
     (SITE / "llms-full.txt").write_text(out, encoding="utf-8")
     print("llms-full.txt", len(out.encode("utf-8")), "bytes")
+    write_pages_js()
+
+
+# The pages the search endpoint reads and the home page offers as Markdown.
+# llms.txt is left out: it is a list of links, not a page to quote.
+def write_pages_js():
+    pages = [{"url": f"https://agentisallyouneed.dev/{name}", "text": (SITE / name).read_text(encoding="utf-8")} for name in PAGES if name != "llms.txt"]
+    pages.append({"url": "https://agentisallyouneed.dev/sign", "text": sign_howto()})
+    body = json.dumps(pages, ensure_ascii=False, indent=2)
+    out = f"// Written by tools/build_llms_full.py from the public pages. Do not edit by hand.\nexport const PAGES = {body};\n"
+    (SITE / "lib" / "pages.js").write_text(out, encoding="utf-8")
+    print("lib/pages.js", len(pages), "pages")
 
 
 if __name__ == "__main__":

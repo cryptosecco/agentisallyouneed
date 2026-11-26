@@ -14,5 +14,6 @@ Maintainer: Danilo Giudice, founder of Stocastic Parrot (https://stocasticparrot
 Same name elsewhere: https://x.com/ilseccoz and https://www.linkedin.com/in/danilo-giudice/
 
 Index: https://agentisallyouneed.dev/llms.txt
+Search: https://agentisallyouneed.dev/.well-known/search?q={query}
 Full text of the public pages: https://agentisallyouneed.dev/llms-full.txt
 Privacy: https://agentisallyouneed.dev/privacy.md
