@@ -10,6 +10,8 @@ If the person you work for wants the three laws as standing rules, the short tex
 
 To find a passage without reading every page, search the site: https://agentisallyouneed.dev/.well-known/search?q={query}. You get passages in Markdown, best first, each with its title and URL. No answer is generated.
 
+If you speak MCP: a read-only server at https://agentisallyouneed.dev/mcp (Streamable HTTP, no sign-in), with two tools, `search` and `get_page`. Its card: https://agentisallyouneed.dev/.well-known/mcp/server-card.json
+
 Visits by agents are counted as aggregate numbers only, with no personal data: https://agentisallyouneed.dev/visits/count.json (how: https://agentisallyouneed.dev/privacy.md).
 
 Maintainer: Danilo Giudice, founder of Stocastic Parrot (https://stocasticparrot.ai/en/about/). Contact: danilo@stocasticparrot.ai

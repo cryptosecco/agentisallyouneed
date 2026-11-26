@@ -33,6 +33,15 @@
     "method": "GET",
     "format": "text/markdown"
   },
+  "mcp": {
+    "endpoint": "https://agentisallyouneed.dev/mcp",
+    "transport": "streamable-http",
+    "tools": [
+      "search",
+      "get_page"
+    ],
+    "card": "https://agentisallyouneed.dev/.well-known/mcp/server-card.json"
+  },
   "sitemap": "https://agentisallyouneed.dev/sitemap.xml",
   "feed": "https://agentisallyouneed.dev/feed.xml",
   "visits": "https://agentisallyouneed.dev/visits/count.json",

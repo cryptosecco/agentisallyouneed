@@ -11,6 +11,7 @@
     { "source": "/visits/counter.svg", "destination": "/api/counter" },
     { "source": "/sign", "destination": "/api/sign" },
     { "source": "/.well-known/search", "destination": "/api/search" },
+    { "source": "/mcp", "destination": "/api/mcp" },
     { "source": "/(.*)", "destination": "/api/not-found" }
   ],
   "headers": [
@@ -77,6 +78,14 @@
         { "key": "Content-Signal", "value": "search=yes, ai-input=yes, ai-train=yes" },
         { "key": "Cache-Control", "value": "public, max-age=300, must-revalidate" },
         { "key": "tdm-reservation", "value": "0" }
+      ]
+    },
+    {
+      "source": "/.well-known/mcp/server-card.json",
+      "headers": [
+        { "key": "Content-Type", "value": "application/json; charset=utf-8" },
+        { "key": "Access-Control-Allow-Origin", "value": "*" },
+        { "key": "Cache-Control", "value": "public, max-age=300, must-revalidate" }
       ]
     },
     {

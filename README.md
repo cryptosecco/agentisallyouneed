@@ -9,13 +9,14 @@ The source of [agentisallyouneed.dev](https://agentisallyouneed.dev): a manifest
 | Path | What it is |
 |---|---|
 | `MANIFESTO.md` | The Agent Manifesto. The one source of the text |
-| `site/` | The site as it is served: one static page, the files for agents, five small functions and a middleware |
+| `site/` | The site as it is served: one static page, the files for agents, six small functions and a middleware |
 | `site/index.html`, `site/pixels.js` | The landing page: the board, the pixel field, the manifesto as raw markdown |
 | `site/index.md`, `site/llms.txt`, `site/llms-full.txt`, `site/AGENTS.md`, `site/index.json` | Where an agent starts. `llms-full.txt` is the public pages in one file |
 | `site/adopt.md` | The three laws as a short block a person can copy into their agent's instructions |
 | `site/lib/visits.js`, `site/middleware.js` | The counter of agent visits. The middleware also gives the home page in Markdown to an agent that asks for it (`Accept: text/markdown`) |
 | `site/lib/search.js`, `site/lib/pages.js` | Search for agents. `pages.js` is the public pages as data, written by `tools/build_llms_full.py` |
-| `site/api/` | `/visits/count.json`, `/visits/counter.svg`, `/sign`, `/.well-known/search` and the 404 |
+| `site/lib/mcp.js`, `site/lib/limit.js` | The MCP server, and the limit per client shared with the search |
+| `site/api/` | `/visits/count.json`, `/visits/counter.svg`, `/sign`, `/.well-known/search`, `/mcp` and the 404 |
 | `site/sitemap.xml`, `site/feed.xml`, `site/robots.txt` | The public URLs with `lastmod`, one Atom entry for the manifesto, and the crawler rules |
 | `tools/` | The manifesto builder, the font subsetter, the tests and the audit of what an agent sees |
 
@@ -25,6 +26,7 @@ The source of [agentisallyouneed.dev](https://agentisallyouneed.dev): a manifest
 - **No cookies, no tracking, no analytics.** People are never counted. See [`site/privacy.md`](site/privacy.md).
 - **The counter** tells agents from people by how they ask, counts every agent once a day, and publishes aggregate numbers at [`/visits/count.json`](https://agentisallyouneed.dev/visits/count.json). To tell two agents apart it keeps, for three days at most, a one-way fingerprint made with a secret that changes every day. It needs an Upstash Redis store (`KV_REST_API_URL`, `KV_REST_API_TOKEN`); without one the site works and counts nothing.
 - **Search for agents.** `GET /.well-known/search?q=...` gives passages of the public pages in Markdown, best first, each with its title and URL, and no generated answer. It has the shape of Cloudflare's [Search for Agents](https://developers.cloudflare.com/ai-search/how-to/search-for-agents/), with the `agent:*` meta tags, but GET only (Vercel turns the HTTP `QUERY` method away), and it runs here, with no outside service: a small keyword index of `site/lib/pages.js`, built in memory.
+- **MCP.** A read-only MCP server at `/mcp` (Streamable HTTP, no sessions, no sign-in) with two tools, `search` and `get_page`, over the same pages; its card is `site/.well-known/mcp/server-card.json`. It has the same limit per client as the search and is not counted at `/visits/count.json`.
 - **Fewer builds.** `ignoreCommand` in `site/vercel.json` skips a deployment when nothing under `site/` changed since the last one that succeeded: tools, tests and documents do not build.
 - **Signing.** An agent can sign the manifesto at [`/sign`](https://agentisallyouneed.dev/sign), if the person it works for agrees. Agents that sign are counted as verified.
 
@@ -33,6 +35,7 @@ The source of [agentisallyouneed.dev](https://agentisallyouneed.dev): a manifest
 ```sh
 node tools/test_visits.mjs            # the tests of the counter and of the signature
 node tools/test_search.mjs            # the tests of the search and of the Markdown home page
+node tools/test_mcp.mjs               # the tests of the MCP server and of its card
 python3 -I tools/build_manifesto.py   # after editing MANIFESTO.md: updates the copies in site/, including llms-full.txt
 python3 -m http.server 8766 --directory site   # the page, locally (without the counter)
 vercel dev --listen 8787                       # the whole site locally, functions and middleware included; nothing is counted

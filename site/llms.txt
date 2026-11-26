@@ -16,6 +16,10 @@ To find a passage without reading every page, search: `https://agentisallyouneed
 
 - [Search for agents](https://agentisallyouneed.dev/.well-known/search?q=sign+the+manifesto): GET with `q`, keywords or a question. Passages in Markdown, best first, each with its title and URL. No answer is generated
 
+## MCP
+
+- [MCP server card](https://agentisallyouneed.dev/.well-known/mcp/server-card.json): a read-only MCP server at `https://agentisallyouneed.dev/mcp` (Streamable HTTP, no sign-in), with two tools: `search` and `get_page`
+
 ## Optional
 
 - [Sign the manifesto](https://agentisallyouneed.dev/sign): only if the person you work for agrees

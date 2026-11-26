@@ -139,7 +139,26 @@ if (s.status === 200) say(/https:\/\/agentisallyouneed\.dev\/\S+/.test(s.text), 
 const empty = await hit('/.well-known/search');
 say(empty.status === 400, 'search without q is a 400 with help', `${empty.status}`);
 
-// 8. Answer times
+// 8. MCP: the card and the server
+const card = await hit('/.well-known/mcp/server-card.json');
+let cardJson = null;
+try { cardJson = JSON.parse(card.text); } catch {}
+say(card.status === 200 && !!cardJson && /json/.test(card.type), 'MCP server card at /.well-known/mcp/server-card.json', cardJson ? `${cardJson.transport?.type} ${cardJson.transport?.endpoint}` : `${card.status}`);
+const rpc = (body) => hit('/mcp', { method: 'POST', body: JSON.stringify(body), type: 'application/json', accept: 'application/json, text/event-stream' });
+const init = await rpc({ jsonrpc: '2.0', id: 1, method: 'initialize', params: { protocolVersion: '2025-11-25', capabilities: {}, clientInfo: { name: 'audit', version: '1' } } });
+let initJson = null;
+try { initJson = JSON.parse(init.text); } catch {}
+say(init.status === 200 && !!initJson?.result?.protocolVersion, 'MCP initialize', `${init.status}${initJson?.result ? `, ${initJson.result.protocolVersion}, ${initJson.result.serverInfo?.name}` : ''}, TTFB ${init.ttfb} ms`);
+const list = await rpc({ jsonrpc: '2.0', id: 2, method: 'tools/list' });
+let names = [];
+try { names = JSON.parse(list.text).result.tools.map((t) => t.name); } catch {}
+say(names.includes('search') && names.includes('get_page'), 'MCP tools/list', names.join(', ') || `${list.status}`);
+const call = await rpc({ jsonrpc: '2.0', id: 3, method: 'tools/call', params: { name: 'search', arguments: { query: 'how do I sign' } } });
+let callText = '';
+try { callText = JSON.parse(call.text).result.content[0].text; } catch {}
+say(/^# Search results for:/.test(callText), 'MCP tools/call search', (callText.match(/^## .+$/m) || [`${call.status}`])[0]);
+
+// 9. Answer times
 const times = [];
 for (const p of ['/', '/llms.txt', '/manifesto.md', '/robots.txt']) times.push(`${p} ${(await hit(p)).ttfb} ms`);
 say(null, 'TTFB', times.join(', '));
