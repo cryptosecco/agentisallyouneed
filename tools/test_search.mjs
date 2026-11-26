@@ -4,6 +4,7 @@ import { PAGES } from '../site/lib/pages.js';
 import { HELP, MAX_RESULTS, SEARCH, passages, quote, renderResults, search } from '../site/lib/search.js';
 import handler from '../site/api/search.js';
 import middleware, { HOME_MARKDOWN, prefersMarkdown } from '../site/middleware.js';
+import { limiter } from '../site/lib/limit.js';
 
 let failures = 0;
 async function test(name, fn) {
@@ -94,6 +95,25 @@ await test('no q is a 400 with help, other methods a 405, HEAD has no body', asy
   assert.equal(h.status, 200);
   assert.equal(await h.text(), '');
   assert.equal((await call('OPTIONS', '/.well-known/search')).status, 204);
+});
+
+await test('rate limit: per client, per minute, nothing kept', async () => {
+  const check = limiter({ limit: 2, windowMs: 60_000 });
+  const from = (ip) => new Request('https://agentisallyouneed.dev/.well-known/search?q=x', { headers: { 'x-real-ip': ip } });
+  const t = 1_000_000;
+  assert.equal(await check(from('192.0.2.1'), t), null);
+  assert.equal(await check(from('192.0.2.1'), t + 1000), null);
+  assert.equal(await check(from('192.0.2.1'), t + 2000), 58);
+  assert.equal(await check(from('192.0.2.2'), t + 2000), null);
+  assert.equal(await check(from('192.0.2.1'), t + 60_000), null);
+  const r = await handler(new Request('https://agentisallyouneed.dev/.well-known/search?q=sign', { headers: { 'x-real-ip': '198.51.100.7' } }));
+  assert.equal(r.status, 200);
+  let last;
+  for (let i = 0; i < 40; i++) last = await handler(new Request('https://agentisallyouneed.dev/.well-known/search?q=sign', { headers: { 'x-real-ip': '198.51.100.8' } }));
+  assert.equal(last.status, 429);
+  assert.ok(Number(last.headers.get('retry-after')) > 0);
+  assert.match(await last.text(), /^# Too many requests/);
+  assert.ok(!readFileSync(new URL('../site/lib/limit.js', import.meta.url), 'utf8').includes('fetch('), 'the limiter must not call out');
 });
 
 await test('the home page answers in Markdown when asked', async () => {
