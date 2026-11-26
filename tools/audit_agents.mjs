@@ -4,6 +4,8 @@
 // The contents are read once, with a user agent that says what it is.
 
 const BASE = (process.argv[2] || 'https://agentisallyouneed.dev').replace(/\/$/, '');
+// For a protected preview: AUDIT_COOKIE='_vercel_jwt=...' (from a share link). Never committed.
+const COOKIE = process.env.AUDIT_COOKIE || '';
 const SELF = 'agentisallyouneed-audit/1.0 (the maintainer\'s own check; https://agentisallyouneed.dev/AGENTS.md)';
 const CRAWLERS = {
   GPTBot: 'Mozilla/5.0 AppleWebKit/537.36 (KHTML, like Gecko; compatible; GPTBot/1.3; +https://openai.com/gptbot)',
@@ -18,6 +20,7 @@ const say = (ok, what, detail = '') => rows.push(`${ok === null ? '·' : ok ? '�
 
 async function hit(path, { ua = SELF, method = 'GET', accept, body, type } = {}) {
   const headers = { 'user-agent': ua };
+  if (COOKIE) headers.cookie = COOKIE;
   if (accept) headers.accept = accept;
   if (type) headers['content-type'] = type;
   const t0 = performance.now();
@@ -133,8 +136,6 @@ say(full.status === 200 && full.text.includes('Law 1 · Do no harm'), 'llms-full
 const s = await hit('/.well-known/search?q=' + encodeURIComponent('how do I sign the manifesto'));
 say(s.status === 200 && s.type.startsWith('text/markdown') && /^# Search results for:/m.test(s.text), 'GET /.well-known/search?q=', `${s.status} ${s.type || '-'}, ${s.text.length} bytes, TTFB ${s.ttfb} ms`);
 if (s.status === 200) say(/https:\/\/agentisallyouneed\.dev\/\S+/.test(s.text), 'results carry a URL', (s.text.match(/^## .+$/m) || [''])[0]);
-const q = await hit('/.well-known/search', { method: 'QUERY', body: 'what do humans promise', type: 'text/plain' });
-say(q.status === 200 && /^# Search results for:/m.test(q.text), 'QUERY /.well-known/search (text/plain body)', `${q.status}${q.error ? ' ' + q.error : ''}`);
 const empty = await hit('/.well-known/search');
 say(empty.status === 400, 'search without q is a 400 with help', `${empty.status}`);
 

@@ -73,15 +73,10 @@ await test('GET /.well-known/search', async () => {
   assert.match(await plus.text(), /^# Search results for: "how do I sign"/);
 });
 
-await test('QUERY with a text or a JSON body', async () => {
-  const a = await call('QUERY', '/.well-known/search', { body: 'how do I sign', headers: { 'content-type': 'text/plain' } });
-  assert.equal(a.status, 200);
-  assert.match(await a.text(), /^# Search results for: "how do I sign"/);
-  const b = await call('QUERY', '/.well-known/search', { body: '{"q":"cookies"}', headers: { 'content-type': 'application/json' } });
-  assert.equal(b.status, 200);
-  assert.match(await b.text(), /^## Privacy/m);
-  const c = await call('QUERY', '/.well-known/search', { body: '{"q":', headers: { 'content-type': 'application/json' } });
-  assert.equal(c.status, 400);
+await test('QUERY is turned away like any other method but GET and HEAD', async () => {
+  const r = await call('QUERY', '/.well-known/search', { body: 'how do I sign', headers: { 'content-type': 'text/plain' } });
+  assert.equal(r.status, 405);
+  assert.equal(r.headers.get('allow'), 'GET, HEAD, OPTIONS');
 });
 
 await test('no q is a 400 with help, other methods a 405, HEAD has no body', async () => {
@@ -90,7 +85,7 @@ await test('no q is a 400 with help, other methods a 405, HEAD has no body', asy
   assert.equal(await r.text(), HELP);
   const p = await call('POST', '/.well-known/search?q=sign', { body: 'x' });
   assert.equal(p.status, 405);
-  assert.match(p.headers.get('allow'), /QUERY/);
+  assert.equal(p.headers.get('allow'), 'GET, HEAD, OPTIONS');
   const h = await call('HEAD', '/.well-known/search?q=sign');
   assert.equal(h.status, 200);
   assert.equal(await h.text(), '');

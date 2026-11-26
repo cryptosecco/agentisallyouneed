@@ -152,7 +152,7 @@ Search the public pages of this site. You get passages in Markdown, best first, 
 
     GET ${ORIGIN}/.well-known/search?q={query}
 
-\`q\` is keywords or a question, up to ${MAX_QUERY} characters. The HTTP QUERY method works too, with the text as the body (\`text/plain\`) or as JSON: \`{"q": "..."}\`.
+\`q\` is keywords or a question, up to ${MAX_QUERY} characters.
 
 The whole site in one file: ${ORIGIN}/llms-full.txt
 `;

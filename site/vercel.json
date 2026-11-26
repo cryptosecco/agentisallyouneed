@@ -1,6 +1,7 @@
 {
   "$schema": "https://openapi.vercel.sh/vercel.json",
   "cleanUrls": true,
+  "ignoreCommand": "git diff --quiet \"${VERCEL_GIT_PREVIOUS_SHA:-HEAD^}\" HEAD -- . || exit 1",
   "redirects": [
     { "source": "/manifesto", "destination": "/#manifesto", "permanent": false },
     { "source": "/manifesto/", "destination": "/#manifesto", "permanent": false }
