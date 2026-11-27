@@ -117,5 +117,14 @@ await test('the card, llms.txt, AGENTS.md and index.json point to the server', (
   assert.ok(sources.indexOf('/mcp') > -1 && sources.indexOf('/mcp') < sources.indexOf('/(.*)'));
 });
 
+await test('the registry entry and the proof of the domain', () => {
+  const entry = JSON.parse(readFileSync(new URL('../server.json', import.meta.url), 'utf8'));
+  assert.equal(entry.name, 'dev.agentisallyouneed/manifesto');
+  assert.ok(entry.description.length <= 100);
+  assert.deepEqual(entry.remotes, [{ type: 'streamable-http', url: ENDPOINT }]);
+  assert.ok(!/@|token|secret|key/i.test(JSON.stringify(entry)), 'no address, token or key in the entry');
+  assert.match(site('.well-known/mcp-registry-auth'), /^v=MCPv1; k=ed25519; p=[A-Za-z0-9+/]{43}=\n$/);
+});
+
 if (failures) { console.log(`\n${failures} failed`); process.exit(1); }
 console.log('\nall passed');

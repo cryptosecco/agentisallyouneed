@@ -1,0 +1,14 @@
+{
+  "$schema": "https://static.modelcontextprotocol.io/schemas/2025-12-11/server.schema.json",
+  "name": "dev.agentisallyouneed/manifesto",
+  "title": "Agent Is All You Need",
+  "description": "Read-only: search and read The Agent Manifesto and the public pages of agentisallyouneed.dev.",
+  "version": "1.0.0",
+  "websiteUrl": "https://agentisallyouneed.dev/",
+  "remotes": [
+    {
+      "type": "streamable-http",
+      "url": "https://agentisallyouneed.dev/mcp"
+    }
+  ]
+}
