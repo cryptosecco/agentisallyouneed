@@ -3,8 +3,24 @@
   "name": "dev.agentisallyouneed/manifesto",
   "title": "Agent Is All You Need",
   "description": "Read-only: search and read The Agent Manifesto and the public pages of agentisallyouneed.dev.",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "websiteUrl": "https://agentisallyouneed.dev/",
+  "icons": [
+    {
+      "src": "https://agentisallyouneed.dev/apple-touch-icon.png",
+      "mimeType": "image/png",
+      "sizes": [
+        "180x180"
+      ]
+    },
+    {
+      "src": "https://agentisallyouneed.dev/favicon.svg",
+      "mimeType": "image/svg+xml",
+      "sizes": [
+        "any"
+      ]
+    }
+  ],
   "remotes": [
     {
       "type": "streamable-http",

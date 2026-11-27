@@ -122,6 +122,11 @@ await test('the registry entry and the proof of the domain', () => {
   assert.equal(entry.name, 'dev.agentisallyouneed/manifesto');
   assert.ok(entry.description.length <= 100);
   assert.deepEqual(entry.remotes, [{ type: 'streamable-http', url: ENDPOINT }]);
+  for (const icon of entry.icons) {
+    assert.match(icon.src, /^https:\/\/agentisallyouneed\.dev\/[^/]+$/);
+    assert.ok(readFileSync(new URL('../site/' + icon.src.split('/').pop(), import.meta.url)).length > 0, 'the icon is a file of the site: ' + icon.src);
+  }
+  assert.ok(!('repository' in entry), 'the repository is not public');
   assert.ok(!/@|token|secret|key/i.test(JSON.stringify(entry)), 'no address, token or key in the entry');
   assert.match(site('.well-known/mcp-registry-auth'), /^v=MCPv1; k=ed25519; p=[A-Za-z0-9+/]{43}=\n$/);
 });
